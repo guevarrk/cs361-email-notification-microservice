@@ -69,7 +69,7 @@ Email Service Response: Email sent successfully: Hello! Your CS361 email service
 ---
 
 ## File Structure  
-
+```
 email-notification-microservice/
 │
 ├── email-service.js # Microservice process
@@ -77,7 +77,7 @@ email-notification-microservice/
 ├── example-main-app.js # Test UI for demonstration
 ├── README.md
 └── .gitignore  
-
+```
 
 ---
 
