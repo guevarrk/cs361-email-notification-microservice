@@ -1,4 +1,4 @@
-# Email Notification Microservice (CS361)
+# Email Notification Microservice
 
 This microservice simulates sending an email message using the **text file communication pipe**
 
