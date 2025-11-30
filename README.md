@@ -6,7 +6,7 @@ It runs in its own process and communicates **only through a text file**
 
 ---
 
-## 🚀 How It Works
+## How It Works
 
 The microservice uses a file called `email-service.txt` as the communication pipe.
 
