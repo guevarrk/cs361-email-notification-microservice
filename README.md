@@ -55,7 +55,7 @@ The microservice runs continuously.
 In a second terminal:  
 
 ```
-node example-main-app.js
+node example-deployment-main-app.js
 
 ```
 
@@ -74,7 +74,7 @@ email-notification-microservice/
 │
 ├── email-service.js # Microservice process
 ├── email-service.txt # Communication pipe (leave blank)
-├── example-main-app.js # Test UI for demonstration
+├── example-deployment-main-app.js # Test UI for demonstration
 ├── README.md
 └── .gitignore  
 ```
