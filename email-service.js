@@ -2,7 +2,8 @@ const fs = require("fs");
 const path = require("path");
 
 // Communication pipe file
-const FILE_PATH = path.join(__dirname, "email-service.txt");
+//const FILE_PATH = path.join(__dirname, "email-service.txt");
+const FILE_PATH = "C:\\Users\\graph\\Documents\\osu\\CS361 - Software Engineering I\\Team-Project\\Microservices\\cs361-email-notification\\email-service.txt";
 
 function readFile() {
   if (!fs.existsSync(FILE_PATH)) return "";
@@ -18,18 +19,20 @@ function writeFile(message) {
 }
 
 function processEmailRequest(command) {
-  // Expected format: send:<message>
+
+  // require "send:" prefix
   if (!command.startsWith("send:")) {
-    return "ERROR: Invalid command format";
+    console.log("[EmailService] Ignoring non-email command:", command);
+    return "";  // ignore instead of sending error
   }
 
   const messageBody = command.replace("send:", "").trim();
 
-  // Simulate sending email
   console.log(`[EmailService] Sending email: "${messageBody}"`);
 
   return `Email sent successfully: ${messageBody}`;
 }
+
 
 function main() {
   console.log("[EmailService] Running... waiting for commands.");
@@ -37,18 +40,21 @@ function main() {
   setInterval(() => {
     const content = readFile();
 
-    if (content === "") return; // nothing to do
+    if (content === "") return;   // nothing to do
 
-    console.log(`[EmailService] Detected command: ${content}`);
-
+    // process command
     const response = processEmailRequest(content);
 
-    // Clear old content and write new response
-    clearFile();
-    writeFile(response);
+    // write response only if there is a valid response
+    if (response && response.length > 0) {
+      writeFile(response);
+    } else {
+      // clear file to prevent loops
+      clearFile();
+    }
 
-    console.log(`[EmailService] Wrote response: ${response}`);
-  }, 400); // Check file every 0.4 seconds
+  }, 300);
+
 }
 
 main();
